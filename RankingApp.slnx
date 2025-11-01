@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="rankingapp.client/rankingapp.client.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="RankingApp.Server/RankingApp.Server.csproj" />
+</Solution>
