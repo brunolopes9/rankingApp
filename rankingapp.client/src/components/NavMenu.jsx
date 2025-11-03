@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom"
 export default function NavMenu() {
   return (
     <header className="border-b shadow-sm mb-4">
-      <nav className="flex items-center justify-between px-6 py-3 bg-white">
+      <nav className=" max-w-7xl mx-auto flex items-center justify-between px-6 py-3 bg-white">
         <div className="font-bold text-lg text-blue-600">RankingApp</div>
 
         <ul className="flex gap-6">
