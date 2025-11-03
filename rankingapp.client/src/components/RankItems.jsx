@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
 import MovieImageArr from "./MovieImages"
+import "./RankItems.css"
 
 const RankItems = () => {
   const [items, setItems] = useState([])
@@ -24,12 +25,14 @@ const RankItems = () => {
               (img) => img.id === item.imageId
             )?.image
             return (
-              <img
-                key={item.id} // React usa para otimização
-                id={`item-${item.id}`} // HTML único para CSS/JS
-                src={imgSrc} // imagem correspondente
-                alt={item.title || "item"} // acessibilidade
-              />
+              <div className="unranked-cell">
+                <img
+                  key={item.id} // React usa para otimização
+                  id={`item-${item.id}`} // HTML único para CSS/JS
+                  src={imgSrc} // imagem correspondente
+                  alt={item.title || "item"} // acessibilidade
+                />
+              </div>
             )
           })
         ) : (
