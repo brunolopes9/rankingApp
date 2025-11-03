@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react"
 import MovieImageArr from "./MovieImages"
 import "./RankItems.css"
 import RankingGrid from "./RankingGrid"
+import ItemCollection from "./ItemCollection"
 
 const RankItems = () => {
   const [items, setItems] = useState([])
@@ -73,33 +74,7 @@ const RankItems = () => {
           drop={drop}
         />
 
-        <div className="items-not-ranked">
-          {items.length > 0 ? (
-            items.map((item) => {
-              if (item.ranking === 0) {
-                const imgSrc = MovieImageArr.find(
-                  (img) => img.id === item.imageId
-                )?.image
-                return (
-                  <div className="unranked-cell" key={item.id}>
-                    <img
-                      id={`item-${item.id}`}
-                      src={imgSrc}
-                      alt={item.title || "item"}
-                      style={{ cursor: "pointer" }}
-                      draggable="true"
-                      onDragStart={drag}
-                    />
-                  </div>
-                )
-              } else {
-                return null
-              }
-            })
-          ) : (
-            <p>Loading items...</p>
-          )}
-        </div>
+        <ItemCollection items={items} drag={drag} imgArr={MovieImageArr} />
       </main>
     </>
   )
