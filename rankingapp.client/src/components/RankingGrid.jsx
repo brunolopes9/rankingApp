@@ -1,6 +1,6 @@
 import "./RankingGrid.css"
 
-const RankingGrid = ({ items, imgArr }) => {
+const RankingGrid = ({ items, imgArr, drag, allowDrop, drop }) => {
   const rankingGrid = []
   const cellCollectionTop = []
   const cellCollectionMiddle = []
@@ -11,8 +11,21 @@ const RankingGrid = ({ items, imgArr }) => {
     if (rankNum > 0) {
       var item = items.find((it) => it.ranking === rankNum)
       cellCollection.push(
-        <div id={`rank-${rankNum}`} className="rank-cell">
-          {" "}
+        <div
+          id={`rank-${rankNum}`}
+          className="rank-cell"
+          onDrop={drop}
+          onDragOver={allowDrop}
+        >
+          {item != null ? (
+            <img
+              id={`item-${item.id}`}
+              src={imgArr.find((o) => o.id === item.imageId)?.image}
+              draggable="true"
+              onDragStart={drag}
+              alt={item.title}
+            />
+          ) : null}
         </div>
       )
     } else {
