@@ -1,6 +1,28 @@
-# Visual Studio
+# Build output
+bin/
+obj/
+out/
+
+# Visual Studio files
 .vs/
-*.suo
 *.user
-*.userosscache
-*.sln.docstates
+*.suo
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Node / React
+node_modules/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.development
+.env.production
+RankingApp.Server/obj/Debug/net8.0/refint/RankingApp.Server.dll

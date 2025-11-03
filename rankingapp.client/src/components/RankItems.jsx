@@ -7,10 +7,9 @@ const RankItems = () => {
 
   useEffect(() => {
     fetch(`Item/${dataType}`)
-      .then((results) => {
-        return results.json()
-      })
+      .then((res) => res.json())
       .then((data) => {
+        console.log(data)
         setItems(data)
       })
   }, [])
@@ -22,7 +21,7 @@ const RankItems = () => {
           items.map((item) => {
             // declarar variáveis precisa de chaves {}
             const imgSrc = MovieImageArr.find(
-              (img) => img.id === item.id
+              (img) => img.id === item.imageId
             )?.image
             return (
               <img
