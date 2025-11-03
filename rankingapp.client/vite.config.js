@@ -9,4 +9,16 @@ export default defineConfig({
       plugins: [tailwindcss()],
     },
   },
+  server: {
+    proxy: {
+      "/WeatherForecast": {
+        target: "https://localhost:7115",
+        secure: false,
+      },
+      "/Item": {
+        target: "https://localhost:7115",
+        secure: false,
+      },
+    },
+  },
 })
