@@ -1,97 +1,60 @@
 import "./RankingGrid.css"
 
+const ROWS = [
+  { label: "top-tier", startRank: 1, endRank: 4 },
+  { label: "middle-tier", startRank: 5, endRank: 8 },
+  { label: "bottom-tier", startRank: 9, endRank: 12 },
+  { label: "worst-tier", startRank: 13, endRank: 16 },
+]
+
 const RankingGrid = ({ items, imgArr, drag, allowDrop, drop }) => {
-  const rankingGrid = []
-  const cellCollectionTop = []
-  const cellCollectionMiddle = []
-  const cellCollectionBottom = []
-  const cellCollectionWorst = []
+  return (
+    <div className="rankings">
+      {ROWS.map((row) => (
+        <div key={row.label} className={`rank-row ${row.label}`}>
+          <div key={`label-${row.label}`} className="row-label">
+            <h4>{row.label}</h4>
+          </div>
 
-  function pushCellMarkupToArr(cellCollection, rankNum, rowLabel) {
-    if (rankNum > 0) {
-      var item = items.find((it) => it.ranking === rankNum)
-      cellCollection.push(
-        <div
-          id={`rank-${rankNum}`}
-          className="rank-cell"
-          onDrop={drop}
-          onDragOver={allowDrop}
-        >
-          {item != null ? (
-            <img
-              id={`item-${item.id}`}
-              src={imgArr.find((o) => o.id === item.imageId)?.image}
-              draggable="true"
-              onDragStart={drag}
-              alt={item.title}
-            />
-          ) : null}
+          {Array.from(
+            { length: row.endRank - row.startRank + 1 },
+            (_, i) => row.startRank + i
+          ).map((rankNum) => {
+            const item = items.find((o) => o.ranking === rankNum)
+            const imageSrc = item
+              ? imgArr.find((o) => o.id === item.imageId)?.image
+              : null
+
+            return (
+              <div
+                key={`rank-${rankNum}`}
+                id={`rank-${rankNum}`}
+                onDrop={(e) => {
+                  console.log("📥 DROP fired on", rankNum)
+                  drop(e)
+                }}
+                onDragOver={(e) => {
+                  e.preventDefault()
+                  console.log("🌀 DRAG OVER on", rankNum)
+                  allowDrop(e)
+                }}
+                className="rank-cell"
+              >
+                {item && imageSrc && (
+                  <img
+                    id={`item-${item.id}`}
+                    src={imageSrc}
+                    draggable="true"
+                    onDragStart={drag}
+                  />
+                )}
+              </div>
+            )
+          })}
         </div>
-      )
-    } else {
-      cellCollection.push(
-        <div className="row-label">
-          <h4> {rowLabel}</h4>
-        </div>
-      )
-    }
-  }
-
-  function createCellForRow(rowNum) {
-    var rankNum = 0
-    var currCollection = []
-    var label = ""
-    const numCells = 5
-
-    for (var a = 1; a <= numCells; a++) {
-      rankNum = a === 1 ? 0 : numCells * (rowNum - 1) + a - rowNum
-
-      if (rowNum === 1) {
-        currCollection = cellCollectionTop
-        label = "top-tier"
-      } else if (rowNum === 2) {
-        currCollection = cellCollectionMiddle
-        label = "middle-tier"
-      } else if (rowNum === 3) {
-        currCollection = cellCollectionBottom
-        label = "bottom-tier"
-      } else if (rowNum === 4) {
-        currCollection = cellCollectionWorst
-        label = "worst-tier"
-      }
-      pushCellMarkupToArr(currCollection, rankNum, label)
-    }
-  }
-
-  function createCellForRows() {
-    const maxRows = 4
-    for (var row = 1; row <= maxRows; row++) {
-      createCellForRow(row)
-    }
-  }
-
-  function createRowsForGrid() {
-    rankingGrid.push(
-      <div className="rank-row top-tier"> {cellCollectionTop} </div>
-    )
-    rankingGrid.push(
-      <div className="rank-row middle-tier"> {cellCollectionMiddle} </div>
-    )
-    rankingGrid.push(
-      <div className="rank-row bottom-tier"> {cellCollectionBottom} </div>
-    )
-    rankingGrid.push(
-      <div className="rank-row worst-tier"> {cellCollectionWorst} </div>
-    )
-    return rankingGrid
-  }
-
-  function createRankingGrid() {
-    createCellForRows()
-    return createRowsForGrid()
-  }
-
-  return <div className="rankings">{createRankingGrid()}</div>
+      ))}
+    </div>
+  )
 }
 
 export default RankingGrid

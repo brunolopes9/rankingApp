@@ -8,28 +8,49 @@ const RankItems = () => {
   const dataType = 1
 
   function drag(ev) {
+    console.log("🚀 drag start", ev.target.id)
     ev.dataTransfer.setData("text", ev.target.id)
   }
 
   function allowDrop(ev) {
+    console.log("💨 allow drop")
     ev.preventDefault()
   }
 
   function drop(ev) {
+    console.log("🔥 drop triggered")
+
     ev.preventDefault()
-    const targetElm = ev.target
-    if (targetElm.nodeName === "IMG") {
-      return false
+
+    // 🔍 Garantir que estamos a apanhar a célula certa
+    let targetElm = ev.target
+    while (targetElm && !targetElm.id?.startsWith("rank-")) {
+      targetElm = targetElm.parentElement
     }
-    if (targetElm.childNodes.length === 0) {
-      var data = parseInt(ev.dataTransfer.getData("text").substring(5))
-      const transformedCollection = items.map((it) =>
-        item.id === parseInt(data)
-          ? { ...item, ranking: parseInt(targetElm.id.substring(5)) }
-          : { ...item, ranking: item.ranking }
-      )
-      setItems(transformedCollection)
+
+    if (!targetElm) {
+      console.log("❌ Nenhuma célula de rank encontrada")
+      return
     }
+
+    // 🔐 Previne largar por cima de uma imagem existente
+    if (targetElm.querySelector("img")) {
+      console.log("⚠️ Já existe uma imagem aqui!")
+      return
+    }
+
+    // 🧠 Obtemos o id do item arrastado
+    const data = parseInt(ev.dataTransfer.getData("text").substring(5))
+    const newRank = parseInt(targetElm.id.substring(5))
+
+    console.log("✅ Drop do item", data, "para rank", newRank)
+
+    // 🔄 Atualiza o estado (muda o ranking)
+    const updatedItems = items.map((item) =>
+      item.id === data ? { ...item, ranking: newRank } : item
+    )
+
+    setItems(updatedItems)
   }
 
   useEffect(() => {
@@ -51,6 +72,7 @@ const RankItems = () => {
           allowDrop={allowDrop}
           drop={drop}
         />
+
         <div className="items-not-ranked">
           {items.length > 0 ? (
             items.map((item) => {

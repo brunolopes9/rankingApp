@@ -30,3 +30,24 @@
 .worst-tier {
   background-color: red;
 }
+.rank-cell {
+  border: 2px dashed #aaa;
+  min-width: 100px;
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.rank-cell img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
+.row-label {
+  width: 100px;
+  text-align: right;
+  pointer-events: none; /* 🔥 essencial! */
+}
