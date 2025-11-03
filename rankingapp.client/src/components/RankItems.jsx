@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react"
+import React, { useEffect } from "react"
 import MovieImageArr from "./MovieImages"
 import "./RankItems.css"
 import RankingGrid from "./RankingGrid"
 import ItemCollection from "./ItemCollection"
 
-const RankItems = () => {
-  const [items, setItems] = useState([])
-  const dataType = 1
-
+const RankItems = ({ items, setItems, dataType, imgArr, localStorageKey }) => {
   function drag(ev) {
     console.log("🚀 drag start", ev.target.id)
     ev.dataTransfer.setData("text", ev.target.id)
@@ -61,20 +58,24 @@ const RankItems = () => {
         console.log(data)
         setItems(data)
       })
-  }, [])
+  }, [dataType])
+
+  useEffect(() => {
+    localStorage.setItem(localStorageKey, JSON.stringify(items))
+  }, [items])
 
   return (
     <>
       <main>
         <RankingGrid
           items={items}
-          imgArr={MovieImageArr}
+          imgArr={imgArr}
           drag={drag}
           allowDrop={allowDrop}
           drop={drop}
         />
 
-        <ItemCollection items={items} drag={drag} imgArr={MovieImageArr} />
+        <ItemCollection items={items} drag={drag} imgArr={imgArr} />
       </main>
     </>
   )
