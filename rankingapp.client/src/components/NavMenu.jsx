@@ -30,10 +30,17 @@ export default function NavMenu() {
           </li>
           <li>
             <NavLink
-              to="/rank-items"
+              to="/rank-movies"
               className="text-gray-700 hover:text-blue-600"
             >
-              Rank Items
+              Rank Movies
+            </NavLink>
+
+            <NavLink
+              to="/rank-albums"
+              className="text-gray-700 hover:text-blue-600"
+            >
+              Rank Albums
             </NavLink>
           </li>
         </ul>
