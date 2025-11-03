@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import MovieImageArr from "./MovieImages"
 import "./RankItems.css"
-import RankingGrid from "./grid"
+import RankingGrid from "./RankingGrid"
 
 const RankItems = () => {
   const [items, setItems] = useState([])

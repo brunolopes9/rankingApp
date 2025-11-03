@@ -1,3 +1,5 @@
+import "./RankingGrid.css"
+
 const RankingGrid = ({ items, imgArr }) => {
   const rankingGrid = []
   const cellCollectionTop = []
@@ -57,16 +59,16 @@ const RankingGrid = ({ items, imgArr }) => {
 
   function createRowsForGrid() {
     rankingGrid.push(
-      <div ClassName="rank-row top-tier"> {cellCollectionTop} </div>
+      <div className="rank-row top-tier"> {cellCollectionTop} </div>
     )
     rankingGrid.push(
-      <div ClassName="rank-row middle-tier"> {cellCollectionMiddle} </div>
+      <div className="rank-row middle-tier"> {cellCollectionMiddle} </div>
     )
     rankingGrid.push(
-      <div ClassName="rank-row bottom-tier"> {cellCollectionBottom} </div>
+      <div className="rank-row bottom-tier"> {cellCollectionBottom} </div>
     )
     rankingGrid.push(
-      <div ClassName="rank-row worst-tier"> {cellCollectionWorst} </div>
+      <div className="rank-row worst-tier"> {cellCollectionWorst} </div>
     )
     return rankingGrid
   }
@@ -76,7 +78,7 @@ const RankingGrid = ({ items, imgArr }) => {
     return createRowsForGrid()
   }
 
-  return <div ClassName="rankings">{createRankingGrid()}</div>
+  return <div className="rankings">{createRankingGrid()}</div>
 }
 
 export default RankingGrid
