@@ -3,6 +3,7 @@ import MovieImageArr from "./MovieImages"
 import "./RankItems.css"
 import RankingGrid from "./RankingGrid"
 import ItemCollection from "./ItemCollection"
+import RankTable from "./RankTable"
 
 const RankItems = ({ items, setItems, dataType, imgArr, localStorageKey }) => {
   const [reload, setReload] = useState(false)
@@ -98,12 +99,21 @@ const RankItems = ({ items, setItems, dataType, imgArr, localStorageKey }) => {
           />
 
           <ItemCollection items={items} drag={drag} imgArr={imgArr} />
-          <button onClick={Reload} class="button-92" role="button">
-            Reload
-          </button>
+
+          {/* Aqui está a tabela */}
+          <RankTable items={items} imgArr={imgArr} />
+
+          <div className="text-center mt-8">
+            <button
+              onClick={Reload}
+              className="bg-indigo-600 text-white px-6 py-2 rounded-xl hover:bg-indigo-700 transition"
+            >
+              🔄 Reload
+            </button>
+          </div>
         </main>
       ) : (
-        <main> Loading... </main>
+        <main>Loading...</main>
       )}
     </>
   )
