@@ -6,12 +6,15 @@ const RankItemsContainer = ({ dataType, imgArr }) => {
   const movieLocalStorageKey = "movies"
   var localStorageKey = ""
 
-  const [albumItems, setAlbumItems] = useState(
-    JSON.parse(localStorage.getItem(albumLocalStorageKey))
-  )
-  const [movieItems, setMovieItems] = useState(
-    JSON.parse(localStorage.getItem(movieLocalStorageKey))
-  )
+  const [movieItems, setMovieItems] = useState(() => {
+    const stored = localStorage.getItem(movieLocalStorageKey)
+    return stored ? JSON.parse(stored) : []
+  })
+
+  const [albumItems, setAlbumItems] = useState(() => {
+    const stored = localStorage.getItem(albumLocalStorageKey)
+    return stored ? JSON.parse(stored) : []
+  })
 
   var data = []
   var setFunc = null
@@ -32,6 +35,7 @@ const RankItemsContainer = ({ dataType, imgArr }) => {
       setItems={setFunc}
       imgArr={imgArr}
       localStorageKey={localStorageKey}
+      dataType={dataType}
     />
   )
 }
