@@ -52,31 +52,43 @@ const RankItems = ({ items, setItems, dataType, imgArr, localStorageKey }) => {
   }
 
   useEffect(() => {
+    if (items == null) {
+      getDataFromApi()
+    }
+  }, [dataType])
+
+  function getDataFromApi() {
     fetch(`Item/${dataType}`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data)
         setItems(data)
       })
-  }, [dataType])
+  }
 
   useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(items))
+    if (items != null) {
+      localStorage.setItem(localStorageKey, JSON.stringify(items))
+    }
   }, [items])
 
   return (
     <>
-      <main>
-        <RankingGrid
-          items={items}
-          imgArr={imgArr}
-          drag={drag}
-          allowDrop={allowDrop}
-          drop={drop}
-        />
+      {items != null ? (
+        <main>
+          <RankingGrid
+            items={items}
+            imgArr={imgArr}
+            drag={drag}
+            allowDrop={allowDrop}
+            drop={drop}
+          />
 
-        <ItemCollection items={items} drag={drag} imgArr={imgArr} />
-      </main>
+          <ItemCollection items={items} drag={drag} imgArr={imgArr} />
+        </main>
+      ) : (
+        <main> Loading... </main>
+      )}
     </>
   )
 }
