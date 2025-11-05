@@ -3,7 +3,7 @@
 Uma aplicação divertida e educativa onde podes **classificar filmes ou álbuns de música** arrastando-os para uma **grelha de ranking interativa**.  
 Este foi o meu primeiro projeto a integrar **React (frontend)** com **.NET Web API (backend)** — desenvolvido para consolidar os meus conhecimentos de C# e ASP.NET Core.
 
-<img src="../RankingApp/rankingapp.client/public/RankingApp1.png" >
+<img src="rankingapp.client/public/RankingApp1.png" >
 <img src="../RankingApp/rankingapp.client/public/RankingApp2.png" ><img src="../RankingApp/rankingapp.client/public/RankingApp3.png" ><img src="../RankingApp/rankingapp.client/public/RankingApp4.png" ><img src="../RankingApp/rankingapp.client/public/RankingApp5.png" >
 <img src="../RankingApp/rankingapp.client/public/RankingApp6.png" >
 ---
