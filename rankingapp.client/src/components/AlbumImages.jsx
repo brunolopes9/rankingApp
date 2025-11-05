@@ -1,13 +1,13 @@
-import AbbeyRoad from "../images/albums/AbbeyRoad.png"
-import Adrenalize from "../images/albums/Adrenalize.png"
-import BackInBlack from "../images/albums/BackInBlack.png"
-import EnjoyTheSilence from "../images/albums/EnjoyTheSilence.png"
-import Parachutes from "../images/albums/Parachutes.png"
-import RideTheLightning from "../images/albums/RideTheLightning.png"
-import RockOrBust from "../images/albums/RockOrBust.png"
-import RustInPeace from "../images/albums/RustInPeace.png"
-import StAnger from "../images/albums/StAnger.png"
-import TheFinalCountdown from "../images/albums/TheFinalCountdown.png"
+import AbbeyRoad from "../assets/albums/AbbeyRoad.png"
+import Adrenalize from "../assets/albums/Adrenalize.png"
+import BackInBlack from "../assets/albums/BackInBlack.png"
+import EnjoyTheSilence from "../assets/albums/EnjoyTheSilence.png"
+import Parachutes from "../assets/albums/Parachutes.png"
+import RideTheLightning from "../assets/albums/RideTheLightning.png"
+import RockOrBust from "../assets/albums/RockOrBust.png"
+import RustInPeace from "../assets/albums/RustInPeace.png"
+import StAnger from "../assets/albums/StAnger.png"
+import TheFinalCountdown from "../assets/albums/TheFinalCountdown.png"
 
 const AlbumImageArr = [
   { id: 11, image: AbbeyRoad },
